@@ -97,3 +97,13 @@ InitTestScene*.unity*
 
 # Auto-generated scenes by play mode tests
 /[Aa]ssets/[Ii]nit[Tt]est[Ss]cene*.unity*
+HalveYourCake/Library
+HalveYourCake/Temp
+HalveYourCake/UserSettings
+HalveYourCake/obj
+HalveYourCake/.vsconfig
+HalveMyCake/Library
+HalveMyCake/obj
+HalveMyCake/Temp
+HalveMyCake/UserSettings
+HalveMyCake/.vsconfig
