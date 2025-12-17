@@ -171,7 +171,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ButterSlicer
   itemImage: {fileID: 45026826}
   pointerPrefab: {fileID: 7223331732227969114, guid: a61ec08aa8cad724bb355b88d0299a50, type: 3}
-  pointerOffset: 100
+  pointerOffset: 105
   slices: 10
   rectTransform: {fileID: 45026824}
 --- !u!114 &45026826
@@ -1413,7 +1413,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::FlourSlicer
   itemImage: {fileID: 1517197577}
   pointerPrefab: {fileID: 7223331732227969114, guid: a61ec08aa8cad724bb355b88d0299a50, type: 3}
-  pointerOffset: 100
+  pointerOffset: 79
   slices: 10
   rectTransform: {fileID: 1517197575}
 --- !u!114 &1517197577

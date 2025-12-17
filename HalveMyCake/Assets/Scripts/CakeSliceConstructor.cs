@@ -13,12 +13,12 @@ public class CakeSliceConstructor : MonoBehaviour
 
     List<Image> slicePointers = new();
     public int GetSlices() { return slices; }
-    public virtual void InitializeSlices(int _slices = -1, float _pointerOffset = 500)
+    public virtual void InitializeSlices(int _slices = -1)
     {
         Helpers.DestroyChildren(this.transform);
         slicePointers.Clear();
         slices = _slices;
-        pointerOffset = _pointerOffset;
+        //pointerOffset = _pointerOffset;
         for (int i = 0; i < slices; i++)
         {
             float angle = 360 * i / slices;

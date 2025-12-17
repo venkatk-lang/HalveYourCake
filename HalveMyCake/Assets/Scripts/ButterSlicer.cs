@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using System.ComponentModel;
+using DG.Tweening;
 using IACGGames;
 using UnityEngine;
 using UnityEngine.UI;
@@ -14,20 +16,20 @@ public class ButterSlicer : MonoBehaviour
     [SerializeField] RectTransform rectTransform;
     List<Image> slicePointers = new();
     public int GetSlices() { return slices; }
-    public void InitializeSlices(int _slices = -1, float _pointerOffset = 200)
+    public void InitializeSlices(int _slices = -1)
     {
         Helpers.DestroyChildren(transform);
         slicePointers.Clear();
         slices = _slices;
-        pointerOffset = _pointerOffset;
 
-        for(int i = 0; i < slices; i++)
+        float unitLength = itemImage.rectTransform.rect.width / slices;
+        Vector3 initialPosition = itemImage.rectTransform.position - Vector3.right * itemImage.rectTransform.rect.width / 2 + Vector3.up * pointerOffset;
+        for (int i = 0; i < slices + 1; i++)
         {
-            float distance = rectTransform.rect.size.x * (i / slices);
-            var pointerInstance = Instantiate(pointerPrefab, itemImage.transform);
-            Vector3 originPosition = new Vector3(rectTransform.rect.xMin, rectTransform.rect.yMax, 0);
-            pointerInstance.transform.position = originPosition + Vector3.up * pointerOffset;
+            var instance = Instantiate(pointerPrefab, itemImage.transform);
+            instance.rectTransform.position = initialPosition + Vector3.right * unitLength * i;
         }
+
     }
     public void UpdateSliceFill()
     {

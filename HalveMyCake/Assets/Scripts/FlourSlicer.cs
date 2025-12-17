@@ -13,20 +13,20 @@ public class FlourSlicer : MonoBehaviour
     [SerializeField] RectTransform rectTransform;
     List<Image> slicePointers = new();
     public int GetSlices() { return slices; }
-    public void InitializeSlices(int _slices = -1, float _pointerOffset = 200)
+    public void InitializeSlices(int _slices = -1)
     {
         Helpers.DestroyChildren(transform);
         slicePointers.Clear();
         slices = _slices;
-        pointerOffset = _pointerOffset;
 
-        for (int i = 0; i < slices; i++)
+        float unitLength = itemImage.rectTransform.rect.height / slices;
+        Vector3 initialPosition = itemImage.rectTransform.position - Vector3.up * itemImage.rectTransform.rect.height / 2 + Vector3.left * pointerOffset;
+        for (int i = 0; i < slices + 1; i++)
         {
-            float distance = rectTransform.rect.y * (i / slices);
-            var pointerInstance = Instantiate(pointerPrefab, itemImage.transform);
-            Vector3 originPosition = new Vector3(rectTransform.rect.yMin, rectTransform.rect.yMax, 0);
-            pointerInstance.transform.position = originPosition + Vector3.right * distance;
+            var instance = Instantiate(pointerPrefab, itemImage.transform);
+            instance.rectTransform.position = initialPosition + Vector3.up * unitLength * i;
         }
+
     }
     public void UpdateSliceFill()
     {
