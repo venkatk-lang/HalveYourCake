@@ -9,6 +9,8 @@ public class GameManager : GameManagerBase<GameManager>
     [SerializeField] private CakeSliceConstructor cakeSlicer;
     [SerializeField] private FlourSlicer flourSlicer;
     [SerializeField] private ButterSlicer butterSlicer;
+    GameMode mode = GameMode.flour;
+    
     private void Start()
     {
         normalScore.Initialize();
@@ -48,10 +50,50 @@ public class GameManager : GameManagerBase<GameManager>
     }
     public void Update()
     {
-        flourSlicer.UpdateSliceFill();
-        if (Input.GetMouseButton(0))
+        if (mode == GameMode.butter)
+            butterSlicer.UpdateSliceFill();
+        else if (mode == GameMode.cake)
+            cakeSlicer.UpdateSliceFill();
+        else if (mode == GameMode.flour)
+            flourSlicer.UpdateSliceFill();
+
+        if (Input.GetMouseButtonUp(0))
         {
-            flourSlicer.InitializeSlices(Random.Range(5, 10));
+            // switch mode
+
+            if (mode == GameMode.butter)
+                butterSlicer.gameObject.SetActive(false);
+            else if (mode == GameMode.cake)
+                cakeSlicer.gameObject.SetActive(false);
+            else if (mode == GameMode.flour)
+                flourSlicer.gameObject.SetActive(false);
+
+
+            mode = (GameMode)(((int)mode + 1) % 3);
+
+            if (mode == GameMode.butter)
+                butterSlicer.gameObject.SetActive(true);
+            else if (mode == GameMode.cake)
+                cakeSlicer.gameObject.SetActive(true);
+            else if (mode == GameMode.flour)
+                flourSlicer.gameObject.SetActive(true);
+            
+            // initialize slices
+
+            if (mode == GameMode.butter)
+                butterSlicer.InitializeSlices(Random.Range(3, 10));
+            else if (mode == GameMode.cake)
+                cakeSlicer.InitializeSlices(Random.Range(3, 10));
+            else if (mode == GameMode.flour)
+                flourSlicer.InitializeSlices(Random.Range(3, 10));
+
+            
         }
     }
+}
+enum GameMode
+{
+    cake = 0,
+    flour = 1,
+    butter = 2
 }

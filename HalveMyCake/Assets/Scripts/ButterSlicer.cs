@@ -26,7 +26,7 @@ public class ButterSlicer : MonoBehaviour
             float distance = rectTransform.rect.size.x * (i / slices);
             var pointerInstance = Instantiate(pointerPrefab, itemImage.transform);
             Vector3 originPosition = new Vector3(rectTransform.rect.xMin, rectTransform.rect.yMax, 0);
-            pointerInstance.transform.position = originPosition + Vector3.right * distance;
+            pointerInstance.transform.position = originPosition + Vector3.up * pointerOffset;
         }
     }
     public void UpdateSliceFill()
