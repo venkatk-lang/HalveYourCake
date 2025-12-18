@@ -3,7 +3,7 @@ using IACGGames;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CakeSliceConstructor : MonoBehaviour
+public class CakeSlicer : MonoBehaviour
 {
     [SerializeField] Image itemImage;
     [SerializeField] Image pointerPrefab;
@@ -29,18 +29,26 @@ public class CakeSliceConstructor : MonoBehaviour
         }
 
     }
-
+    int filledSlices = 0;
     public virtual void UpdateSliceFill()
     {
         Vector3 vector = Input.mousePosition - itemImage.rectTransform.position;
         vector.Normalize();
         float angle = Vector3.SignedAngle(itemImage.rectTransform.up, vector, -itemImage.rectTransform.forward);
-        if (angle < 0) angle = 360 + angle;
-
+        //if (angle < 0) angle = 360 + angle;
         float anglePerSlice = 360 / slices;
-        angle -= anglePerSlice / 2;
+        angle += (anglePerSlice / 2);
+
         angle += angle < 0 ? 360 : 0;
         angle %= 360;
-        itemImage.fillAmount = ((int)((angle / anglePerSlice) + 1) * anglePerSlice) / 360;
+
+        filledSlices = Mathf.FloorToInt((angle) / anglePerSlice);
+        itemImage.fillAmount = Mathf.Clamp01((float)filledSlices / slices);
+        //angle -= anglePerSlice / 2;
+        //itemImage.fillAmount = ((int)((angle / anglePerSlice) + 1) * anglePerSlice) / 360;
+    }
+    public int GetAnswer()
+    {
+        return Mathf.RoundToInt(filledSlices);
     }
 }

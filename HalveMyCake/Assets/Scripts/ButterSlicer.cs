@@ -31,6 +31,7 @@ public class ButterSlicer : MonoBehaviour
         }
 
     }
+    int filledSlices;
     public void UpdateSliceFill()
     {
         Vector2 localMousePosition;
@@ -51,24 +52,12 @@ public class ButterSlicer : MonoBehaviour
         }
         else
         {
-            int filledSlices = Mathf.FloorToInt((localMousePosition.x - xMin) / distancePerSlice) + 1;
+            filledSlices = Mathf.FloorToInt((localMousePosition.x - xMin) / distancePerSlice) + 1;
             itemImage.fillAmount = Mathf.Clamp01((float)filledSlices / slices);
         }
     }
-
-    //public void UpdateSliceFill()
-    //{
-    //    Vector2 position = Input.mousePosition;
-    //    float distancePerSlice = rectTransform.rect.size.x / slices;
-    //    if (position.x < rectTransform.rect.xMin)
-    //    {
-    //        itemImage.fillAmount = 0;
-    //    } else if(position.x > rectTransform.rect.xMax)
-    //    {
-    //        itemImage.fillAmount = 1;
-    //    } else
-    //    {
-    //        itemImage.fillAmount = (int)((position.x - rectTransform.rect.xMin) / distancePerSlice) / slices;
-    //    }
-    //}
+    public int GetAnswer()
+    {
+        return filledSlices;
+    }
 }

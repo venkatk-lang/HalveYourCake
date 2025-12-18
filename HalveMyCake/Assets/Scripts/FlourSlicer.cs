@@ -28,6 +28,7 @@ public class FlourSlicer : MonoBehaviour
         }
 
     }
+    int filledSlices;
     public void UpdateSliceFill()
     {
         Vector2 localMousePosition;
@@ -48,8 +49,12 @@ public class FlourSlicer : MonoBehaviour
         }
         else
         {
-            int filledSlices = Mathf.FloorToInt((localMousePosition.y - yMin) / distancePerSlice) + 1;
+            filledSlices = Mathf.FloorToInt((localMousePosition.y - yMin) / distancePerSlice) + 1;
             itemImage.fillAmount = Mathf.Clamp01((float)filledSlices / slices);
         }
+    }
+    public int GetAnswer()
+    {
+        return filledSlices;
     }
 }
