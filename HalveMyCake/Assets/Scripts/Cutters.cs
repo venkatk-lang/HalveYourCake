@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Nuker {
+namespace Nuker.Tools {
     public interface ICutter {
         public int PieceCount {get;set;}
 
@@ -22,12 +22,13 @@ namespace Nuker {
             Vector2 direction = new(Mathf.Sin(angle), Mathf.Cos(angle));
             return direction;
         }
+
         // here position is direction
         public int PieceSelection(Vector2 position)
         {
             float angle = Vector2.SignedAngle(Vector2.up, position);
             if(angle < 0) angle = 360 + angle;
-
+            angle = 360 - angle;
             float anglePerSlice = 360 / PieceCount;
             if(angle < 360 && angle > 360 - (anglePerSlice/2)) {
                 return 0;

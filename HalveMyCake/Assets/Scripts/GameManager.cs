@@ -10,7 +10,7 @@ public class GameManager : GameManagerBase<GameManager>
     [SerializeField] private ButterSlicer butterSlicer;
     [SerializeField] private ProblemsSO problems;
     [SerializeField] private ProblemUI problemUI;
-    
+
     GameMode mode = GameMode.flour;
     bool gameStarted = false;
     int problemCount => problems.problem.Count;
@@ -75,11 +75,11 @@ public class GameManager : GameManagerBase<GameManager>
                 NextLevel();
             } else
             {
-                if(0 >= attemptsRemaining--)
-                {
-                    NextLevel();
-                    attemptsRemaining = 2;
-                }
+                //if(0 >= attemptsRemainin)g
+                //{
+                //    NextLevel();
+                //    attemptsRemaining = 2;
+                //}
 
             }
 
@@ -96,6 +96,9 @@ public class GameManager : GameManagerBase<GameManager>
         else if (mode == GameMode.flour)
             ans = flourSlicer.GetAnswer();
         //currentProblem = problems.problem[problemIndex];
+        // Debug.Log("DATA ANS" +problems.problem[problemIndex].answer.numerator);
+        // Debug.Log("DATA MUL" +multiplier);
+        // Debug.Log("your ans" + ans);
         return ans == problems.problem[problemIndex].answer.numerator * multiplier;
     }
     public void NextLevel()

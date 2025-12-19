@@ -1,6 +1,4 @@
 using System.Collections.Generic;
-using System.ComponentModel;
-using DG.Tweening;
 using IACGGames;
 using UnityEngine;
 using UnityEngine.UI;
