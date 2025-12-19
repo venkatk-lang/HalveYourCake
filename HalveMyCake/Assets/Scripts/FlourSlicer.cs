@@ -43,6 +43,7 @@ public class FlourSlicer : MonoBehaviour
         if (localMousePosition.y < yMin)
         {
             // itemImage.fillAmount = 0;
+            filledSlices = 0;
             DOTween.To(
                 (x) => itemImage.fillAmount = x,
                 itemImage.fillAmount,
@@ -53,6 +54,7 @@ public class FlourSlicer : MonoBehaviour
         else if (localMousePosition.y > yMax)
         {
             // itemImage.fillAmount = 1;
+            filledSlices = slices;
             DOTween.To(
                 (x) => itemImage.fillAmount = x,
                 itemImage.fillAmount,
@@ -62,7 +64,7 @@ public class FlourSlicer : MonoBehaviour
         }
         else
         {
-            filledSlices = Mathf.FloorToInt((localMousePosition.y - yMin) / distancePerSlice) + 1;
+            filledSlices = Mathf.FloorToInt((localMousePosition.y - yMin) / distancePerSlice);
             // itemImage.fillAmount = Mathf.Clamp01((float)filledSlices / slices);
             DOTween.To(
                 (x) => itemImage.fillAmount = x,
@@ -70,6 +72,7 @@ public class FlourSlicer : MonoBehaviour
                 Mathf.Clamp01((float)filledSlices / slices),
                 0.2f
             );
+            filledSlices++;
         }
     }
     public int GetAnswer()

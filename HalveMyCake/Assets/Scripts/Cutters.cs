@@ -30,6 +30,7 @@ namespace Nuker.Tools {
             if(angle < 0) angle = 360 + angle;
             angle = 360 - angle;
             float anglePerSlice = 360 / PieceCount;
+            angle -= anglePerSlice / 2;
             if(angle < 360 && angle > 360 - (anglePerSlice/2)) {
                 return 0;
             } else {

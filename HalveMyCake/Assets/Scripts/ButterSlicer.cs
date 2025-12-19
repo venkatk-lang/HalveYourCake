@@ -44,6 +44,7 @@ public class ButterSlicer : MonoBehaviour
         if (localMousePosition.x < xMin)
         {
             // itemImage.fillAmount = 0;
+            filledSlices = 0;
             DOTween.To(
                 (x) => itemImage.fillAmount = x,
                 itemImage.fillAmount,
@@ -54,6 +55,7 @@ public class ButterSlicer : MonoBehaviour
         else if (localMousePosition.x > xMax)
         {
             // itemImage.fillAmount = 1;
+            filledSlices = slices;
             DOTween.To(
                 (x) => itemImage.fillAmount = x,
                 itemImage.fillAmount,
@@ -63,7 +65,7 @@ public class ButterSlicer : MonoBehaviour
         }
         else
         {
-            filledSlices = Mathf.FloorToInt((localMousePosition.x - xMin) / distancePerSlice) + 1;
+            filledSlices = Mathf.FloorToInt((localMousePosition.x - xMin) / distancePerSlice);
             // itemImage.fillAmount = Mathf.Clamp01((float)filledSlices / slices);
             DOTween.To(
                 (x) => itemImage.fillAmount = x,
@@ -71,6 +73,7 @@ public class ButterSlicer : MonoBehaviour
                 Mathf.Clamp01((float)filledSlices / slices),
                 0.2f
             );
+            filledSlices++;
         }
     }
     public int GetAnswer()
