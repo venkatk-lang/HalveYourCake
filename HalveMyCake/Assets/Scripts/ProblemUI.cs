@@ -19,7 +19,7 @@ public class ProblemUI : MonoBehaviour
         for (int i = 0; i < numerator.Length; i++)
         {
             fractionLines[i].enabled = false;
-            switch (question.value1Type)
+            switch (question.valueType[i])
             {
                 case ProblemType.Fractional:
                     // Set fractional problem text

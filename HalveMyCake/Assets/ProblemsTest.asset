@@ -13,70 +13,35 @@ MonoBehaviour:
   m_Name: ProblemsTest
   m_EditorClassIdentifier: Assembly-CSharp::ProblemsSO
   problem:
-  - difficulty: 1
-    question:
-      value1Type: 0
-      value2Type: 0
-      numerator:
-      - 1
-      - 0
-      denominator:
-      - 3
-      - 0
-      OperationType: 0
-    answer:
-      numerator: 1
-      denominator: 3
-      multiplier: 0
   - difficulty: 0
     question:
-      value1Type: 0
-      value2Type: 0
-      numerator:
-      - 0
-      - 0
-      denominator:
-      - 0
-      - 0
-      OperationType: 0
-    answer:
-      numerator: 0
-      denominator: 0
-      multiplier: 0
-  - difficulty: 1
-    question:
-      value1Type: 0
-      value2Type: 0
+      valueType: 0000000000000000
       numerator:
       - 1
       - 1
       denominator:
-      - 4
-      - 4
+      - 2
+      - 2
       OperationType: 1
     answer:
       numerator: 1
-      denominator: 2
-      multiplier: 2
-  - difficulty: 1
+      denominator: 1
+  - difficulty: 0
     question:
-      value1Type: 3
-      value2Type: 0
+      valueType: 0000000000000000
       numerator:
-      - 3
-      - 0
+      - 1
+      - 1
       denominator:
-      - 10
-      - 0
-      OperationType: 0
+      - 2
+      - 4
+      OperationType: 1
     answer:
       numerator: 3
-      denominator: 10
-      multiplier: 0
-  - difficulty: 2
+      denominator: 4
+  - difficulty: 0
     question:
-      value1Type: 1
-      value2Type: 0
+      valueType: 0100000000000000
       numerator:
       - 0
       - 1
@@ -87,4 +52,3 @@ MonoBehaviour:
     answer:
       numerator: 1
       denominator: 2
-      multiplier: 2

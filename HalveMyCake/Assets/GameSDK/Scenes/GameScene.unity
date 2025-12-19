@@ -1087,7 +1087,6 @@ GameObject:
   - component: {fileID: 1271287572}
   - component: {fileID: 1271287575}
   - component: {fileID: 1271287574}
-  - component: {fileID: 1271287573}
   m_Layer: 5
   m_Name: QuestionConstructor
   m_TagString: Untagged
@@ -1114,18 +1113,6 @@ RectTransform:
   m_AnchoredPosition: {x: -526.41833, y: 428.87604}
   m_SizeDelta: {x: -1052.8367, y: -857.7521}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1271287573
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1271287571}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8326031f47dea694686881d881dccd14, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
 --- !u!114 &1271287574
 MonoBehaviour:
   m_ObjectHideFlags: 0

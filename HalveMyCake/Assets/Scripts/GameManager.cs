@@ -15,7 +15,7 @@ public class GameManager : GameManagerBase<GameManager>
     bool gameStarted = false;
     int problemCount => problems.problem.Count;
     int problemIndex = -1;
-    Problem currentProblem = null;
+    //Problem currentProblem = null;
     private void Start()
     {
         UIManager.Instance.Init();
@@ -25,7 +25,7 @@ public class GameManager : GameManagerBase<GameManager>
     {
         UIManager.Instance.Show(UIState.GameHUD, 0.5f);
         normalScore.Initialize();
-        currentProblem = problems.problem[0];
+        //currentProblem = problems.problem[0];
         NextLevel();
         gameStarted = true;
     }
@@ -95,8 +95,8 @@ public class GameManager : GameManagerBase<GameManager>
             ans = cakeSlicer.GetAnswer();
         else if (mode == GameMode.flour)
             ans = flourSlicer.GetAnswer();
-        currentProblem = problems.problem[problemIndex];
-        return ans == currentProblem.answer.numerator * multiplier;
+        //currentProblem = problems.problem[problemIndex];
+        return ans == problems.problem[problemIndex].answer.numerator * multiplier;
     }
     public void NextLevel()
     {
@@ -122,13 +122,12 @@ public class GameManager : GameManagerBase<GameManager>
             flourSlicer.gameObject.SetActive(true);
 
         // initialize slices
-        currentProblem = problems.problem[problemIndex];
         if (mode == GameMode.butter)
-            butterSlicer.InitializeSlices(currentProblem.answer.denominator * multiplier);
+            butterSlicer.InitializeSlices(problems.problem[problemIndex].answer.denominator * multiplier);
         else if (mode == GameMode.cake)
-            cakeSlicer.InitializeSlices(currentProblem.answer.denominator * multiplier);
+            cakeSlicer.InitializeSlices(problems.problem[problemIndex].answer.denominator * multiplier);
         else if (mode == GameMode.flour)
-            flourSlicer.InitializeSlices(currentProblem.answer.denominator * multiplier);
+            flourSlicer.InitializeSlices(problems.problem[problemIndex].answer.denominator * multiplier);
 
     }
 }
