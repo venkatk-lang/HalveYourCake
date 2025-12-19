@@ -3,6 +3,7 @@ using IACGGames;
 using UnityEngine;
 using UnityEngine.UI;
 using Nuker.Tools;
+using DG.Tweening;
 
 public class CakeSlicer : MonoBehaviour
 {
@@ -36,7 +37,13 @@ public class CakeSlicer : MonoBehaviour
         vector.Normalize();
 
         filledSlices = cutter.PieceSelection(vector);
-        itemImage.fillAmount = Mathf.Clamp01((float)filledSlices/(float)slices);
+        // itemImage.fillAmount = Mathf.Clamp01((float)filledSlices/(float)slices);
+        DOTween.To(
+                (x) => itemImage.fillAmount = x,
+                itemImage.fillAmount,
+                Mathf.Clamp01((float)filledSlices/(float)slices),
+                0.2f
+            );
     }
     public int GetAnswer()
     {

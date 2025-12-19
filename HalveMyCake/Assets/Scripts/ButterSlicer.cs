@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using IACGGames;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class ButterSlicer : MonoBehaviour
 {
@@ -42,16 +43,34 @@ public class ButterSlicer : MonoBehaviour
 
         if (localMousePosition.x < xMin)
         {
-            itemImage.fillAmount = 0;
+            // itemImage.fillAmount = 0;
+            DOTween.To(
+                (x) => itemImage.fillAmount = x,
+                itemImage.fillAmount,
+                0,
+                0.2f
+            );
         }
         else if (localMousePosition.x > xMax)
         {
-            itemImage.fillAmount = 1;
+            // itemImage.fillAmount = 1;
+            DOTween.To(
+                (x) => itemImage.fillAmount = x,
+                itemImage.fillAmount,
+                1,
+                0.2f
+            );
         }
         else
         {
             filledSlices = Mathf.FloorToInt((localMousePosition.x - xMin) / distancePerSlice) + 1;
-            itemImage.fillAmount = Mathf.Clamp01((float)filledSlices / slices);
+            // itemImage.fillAmount = Mathf.Clamp01((float)filledSlices / slices);
+            DOTween.To(
+                (x) => itemImage.fillAmount = x,
+                itemImage.fillAmount,
+                Mathf.Clamp01((float)filledSlices / slices),
+                0.2f
+            );
         }
     }
     public int GetAnswer()

@@ -2,6 +2,7 @@ using IACGGames;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 public class FlourSlicer : MonoBehaviour
 {
     [SerializeField] private Image itemImage;
@@ -41,16 +42,34 @@ public class FlourSlicer : MonoBehaviour
 
         if (localMousePosition.y < yMin)
         {
-            itemImage.fillAmount = 0;
+            // itemImage.fillAmount = 0;
+            DOTween.To(
+                (x) => itemImage.fillAmount = x,
+                itemImage.fillAmount,
+                0,
+                0.2f
+            );
         }
         else if (localMousePosition.y > yMax)
         {
-            itemImage.fillAmount = 1;
+            // itemImage.fillAmount = 1;
+            DOTween.To(
+                (x) => itemImage.fillAmount = x,
+                itemImage.fillAmount,
+                1,
+                0.2f
+            );
         }
         else
         {
             filledSlices = Mathf.FloorToInt((localMousePosition.y - yMin) / distancePerSlice) + 1;
-            itemImage.fillAmount = Mathf.Clamp01((float)filledSlices / slices);
+            // itemImage.fillAmount = Mathf.Clamp01((float)filledSlices / slices);
+            DOTween.To(
+                (x) => itemImage.fillAmount = x,
+                itemImage.fillAmount,
+                Mathf.Clamp01((float)filledSlices / slices),
+                0.2f
+            );
         }
     }
     public int GetAnswer()
