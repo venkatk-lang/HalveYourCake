@@ -18,6 +18,16 @@ public class CakeSlicer : MonoBehaviour
 
     CircleCutter cutter = new CircleCutter();
 
+    [SerializeField] GameObject bgGameObject;
+    
+    private void OnDisable()
+    {
+        bgGameObject.SetActive(false);
+    }
+    private void OnEnable()
+    {
+        bgGameObject.SetActive(true);
+    }
     public virtual void InitializeSlices(int _slices = -1)
     {
         Helpers.DestroyChildren(this.transform);

@@ -65,7 +65,7 @@ public class ButterSlicer : MonoBehaviour
         }
         else
         {
-            filledSlices = Mathf.FloorToInt((localMousePosition.x - xMin) / distancePerSlice);
+            filledSlices = Mathf.FloorToInt(((localMousePosition.x - xMin) + (distancePerSlice / 2)) / distancePerSlice);
             // itemImage.fillAmount = Mathf.Clamp01((float)filledSlices / slices);
             DOTween.To(
                 (x) => itemImage.fillAmount = x,
@@ -73,7 +73,7 @@ public class ButterSlicer : MonoBehaviour
                 Mathf.Clamp01((float)filledSlices / slices),
                 0.2f
             );
-            filledSlices++;
+            //filledSlices++;
         }
     }
     public int GetAnswer()

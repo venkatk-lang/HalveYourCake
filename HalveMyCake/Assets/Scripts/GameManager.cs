@@ -75,12 +75,7 @@ public class GameManager : GameManagerBase<GameManager>
                 NextLevel();
             } else
             {
-                //if(0 >= attemptsRemainin)g
-                //{
-                //    NextLevel();
-                //    attemptsRemaining = 2;
-                //}
-
+                
             }
 
         }

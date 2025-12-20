@@ -64,7 +64,7 @@ public class FlourSlicer : MonoBehaviour
         }
         else
         {
-            filledSlices = Mathf.FloorToInt((localMousePosition.y - yMin) / distancePerSlice);
+            filledSlices = Mathf.FloorToInt(((localMousePosition.y - yMin) + (distancePerSlice / 2)) / distancePerSlice);
             // itemImage.fillAmount = Mathf.Clamp01((float)filledSlices / slices);
             DOTween.To(
                 (x) => itemImage.fillAmount = x,
@@ -72,7 +72,7 @@ public class FlourSlicer : MonoBehaviour
                 Mathf.Clamp01((float)filledSlices / slices),
                 0.2f
             );
-            filledSlices++;
+            //filledSlices++;
         }
     }
     public int GetAnswer()
