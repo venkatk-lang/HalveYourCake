@@ -14,6 +14,15 @@ public class FlourSlicer : MonoBehaviour
     [SerializeField] RectTransform rectTransform;
     List<Image> slicePointers = new();
     public int GetSlices() { return slices; }
+    [SerializeField] private GameObject bg;
+    private void OnEnable()
+    {
+        bg.SetActive(true);
+    }
+    private void OnDisable()
+    {
+        bg.SetActive(false);
+    }
     public void InitializeSlices(int _slices = -1)
     {
         Helpers.DestroyChildren(transform);

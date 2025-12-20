@@ -24,9 +24,8 @@ public class GameManager : GameManagerBase<GameManager>
     public void StartGame()
     {
         UIManager.Instance.Show(UIState.GameHUD, 0.5f);
-        normalScore.Initialize();
-        //currentProblem = problems.problem[0];
         NextLevel();
+        normalScore.Initialize();
         gameStarted = true;
     }
 
@@ -57,6 +56,7 @@ public class GameManager : GameManagerBase<GameManager>
         StartGame();
     }
     int attemptsRemaining = 2;
+
     public void Update()
     {
         if (!gameStarted) return;
@@ -69,13 +69,14 @@ public class GameManager : GameManagerBase<GameManager>
 
         if (Input.GetMouseButtonUp(0))
         {
-            if(CheckAnswer())
+            if (CheckAnswer())
             {
                 normalScore.Score.Add(10);
                 NextLevel();
-            } else
+            }
+            else
             {
-                
+
             }
 
         }
