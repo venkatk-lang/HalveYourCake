@@ -6,7 +6,7 @@ namespace IACGGames
         public bool IsPaused { get; private set; }
 
         public IGameLifecycle gameLifecycle;
-        
+        public int currentLevel = 0;
         public void StartGame()
         {
             ResumeGame();

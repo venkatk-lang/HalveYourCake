@@ -13,6 +13,7 @@ public class ProblemUI : MonoBehaviour
     public TextMeshProUGUI operationSymbol;
 
     public TextMeshProUGUI[] floatingNums;
+    public TextMeshProUGUI answerNumerator, answerDenominator;
     public void SetProblemText(Question question)
     {
         Clear();
@@ -71,6 +72,11 @@ public class ProblemUI : MonoBehaviour
             }
         }
         operationSymbol.text = operationSymbols[question.OperationType];
+    }
+    public void SetAnswerText(Vector2Int value)
+    {
+        answerNumerator.text = value.x.ToString();
+        answerDenominator.text = value.y.ToString();
     }
     public void Clear()
     {

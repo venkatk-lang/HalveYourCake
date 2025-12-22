@@ -21,30 +21,54 @@ public class ProblemsSOEditor : Editor
         EditorGUILayout.LabelField("Problems List", EditorStyles.boldLabel);
 
         // List all problems with select and remove buttons
-        for (int i = 0; i < problemArray.arraySize; i++)
+        if(EditorGUILayout.DropdownButton(new GUIContent("Problems"), FocusType.Passive))
         {
-            EditorGUILayout.BeginHorizontal();
-            EditorGUILayout.LabelField($"Problem {i + 1}", GUILayout.Width(100));
-            if (GUILayout.Button("Select", GUILayout.Width(60)))
+            GenericMenu menu = new GenericMenu();
+            for (int i = 0; i < problemArray.arraySize; i++)
             {
-                selectedIndex = i;
+                int index = i; // Capture index for the closure
+                menu.AddItem(new GUIContent($"Problem {i + 1}"), selectedIndex == i, () =>
+                {
+                    selectedIndex = index;
+                });
             }
-            if (GUILayout.Button("Remove", GUILayout.Width(60)))
-            {
-                problemArray.DeleteArrayElementAtIndex(i);
-                if (selectedIndex == i) selectedIndex = -1;
-                else if (selectedIndex > i) selectedIndex--;
-                break;
-            }
-            EditorGUILayout.EndHorizontal();
+            menu.ShowAsContext();
         }
+        //for (int i = 0; i < problemArray.arraySize; i++)
+        //{
+            //EditorGUILayout.BeginHorizontal();
+            //EditorGUILayout.LabelField($"Problem {i + 1}", GUILayout.Width(100));
+            //if (GUILayout.Button("Select", GUILayout.Width(60)))
+            //{
+            //    selectedIndex = i;
+            //}
+            //if (GUILayout.Button("Remove", GUILayout.Width(60)))
+            //{
+            //    problemArray.DeleteArrayElementAtIndex(i);
+            //    if (selectedIndex == i) selectedIndex = -1;
+            //    else if (selectedIndex > i) selectedIndex--;
+            //    break;
+            //}
+            //EditorGUILayout.EndHorizontal();
+        //}
 
         EditorGUILayout.Space(10);
+        EditorGUILayout.BeginHorizontal();
         if (GUILayout.Button("Add New Problem"))
         {
             problemArray.InsertArrayElementAtIndex(problemArray.arraySize);
             selectedIndex = problemArray.arraySize - 1;
         }
+        if(GUILayout.Button("Remove Current Problem"))
+        {
+            if (selectedIndex >= 0 && selectedIndex < problemArray.arraySize)
+            {
+                problemArray.DeleteArrayElementAtIndex(selectedIndex);
+                selectedIndex = -1;
+            }
+        }
+        EditorGUILayout.EndHorizontal();
+
 
         EditorGUILayout.Space(20);
 

@@ -48,10 +48,26 @@ public class CakeSlicer : MonoBehaviour
 
         filledSlices = cutter.PieceSelection(vector);
         // itemImage.fillAmount = Mathf.Clamp01((float)filledSlices/(float)slices);
-        DOTween.To(
+        Tween(Mathf.Clamp01((float)filledSlices / (float)slices));
+        //DOTween.To(
+        //        (x) => itemImage.fillAmount = x,
+        //        itemImage.fillAmount,
+        //        Mathf.Clamp01((float)filledSlices/(float)slices),
+        //        0.2f
+        //    );
+    }
+    public Vector2Int GetFraction()
+    {
+        return new Vector2Int(filledSlices, slices);
+    }
+    Tweener tweener;
+    private void Tween(float value)
+    {
+        tweener?.Kill();
+        tweener = DOTween.To(
                 (x) => itemImage.fillAmount = x,
                 itemImage.fillAmount,
-                Mathf.Clamp01((float)filledSlices/(float)slices),
+                value,
                 0.2f
             );
     }

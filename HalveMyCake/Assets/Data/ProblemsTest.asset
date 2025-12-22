@@ -20,6 +20,58 @@ MonoBehaviour:
       - 1
       - 1
       denominator:
+      - 4
+      - 4
+      OperationType: 1
+    answer:
+      numerator: 1
+      denominator: 2
+  - difficulty: 0
+    question:
+      valueType: 0000000000000000
+      numerator:
+      - 1
+      - 1
+      denominator:
+      - 2
+      - 3
+      OperationType: 1
+    answer:
+      numerator: 5
+      denominator: 6
+  - difficulty: 0
+    question:
+      valueType: 0000000000000000
+      numerator:
+      - 2
+      - 1
+      denominator:
+      - 5
+      - 10
+      OperationType: 1
+    answer:
+      numerator: 5
+      denominator: 10
+  - difficulty: 0
+    question:
+      valueType: 0000000000000000
+      numerator:
+      - 3
+      - 1
+      denominator:
+      - 8
+      - 2
+      OperationType: 1
+    answer:
+      numerator: 7
+      denominator: 8
+  - difficulty: 0
+    question:
+      valueType: 0000000000000000
+      numerator:
+      - 1
+      - 1
+      denominator:
       - 2
       - 2
       OperationType: 1
@@ -30,25 +82,51 @@ MonoBehaviour:
     question:
       valueType: 0000000000000000
       numerator:
+      - 3
+      - 1
+      denominator:
+      - 4
+      - 4
+      OperationType: 2
+    answer:
+      numerator: 1
+      denominator: 2
+  - difficulty: 0
+    question:
+      valueType: 0000000000000000
+      numerator:
+      - 5
+      - 1
+      denominator:
+      - 6
+      - 3
+      OperationType: 2
+    answer:
+      numerator: 3
+      denominator: 6
+  - difficulty: 0
+    question:
+      valueType: 0100000000000000
+      numerator:
       - 1
       - 1
       denominator:
-      - 2
+      - 1
       - 4
-      OperationType: 1
+      OperationType: 2
     answer:
       numerator: 3
       denominator: 4
   - difficulty: 0
     question:
-      valueType: 0100000000000000
+      valueType: 0000000000000000
       numerator:
-      - 0
-      - 1
+      - 2
+      - 2
       denominator:
-      - 25
-      - 4
-      OperationType: 1
+      - 3
+      - 3
+      OperationType: 2
     answer:
-      numerator: 1
-      denominator: 2
+      numerator: 0
+      denominator: 10

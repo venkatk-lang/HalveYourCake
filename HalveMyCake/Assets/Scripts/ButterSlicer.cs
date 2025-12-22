@@ -31,6 +31,7 @@ public class ButterSlicer : MonoBehaviour
 
     }
     int filledSlices;
+    Tweener tweener;
     public void UpdateSliceFill()
     {
         Vector2 localMousePosition;
@@ -43,38 +44,51 @@ public class ButterSlicer : MonoBehaviour
 
         if (localMousePosition.x < xMin)
         {
-            // itemImage.fillAmount = 0;
             filledSlices = 0;
-            DOTween.To(
-                (x) => itemImage.fillAmount = x,
-                itemImage.fillAmount,
-                0,
-                0.2f
-            );
+            Tween(0);
+            //DOTween.To(
+            //    (x) => itemImage.fillAmount = x,
+            //    itemImage.fillAmount,
+            //    0,
+            //    0.2f
+            //);
         }
         else if (localMousePosition.x > xMax)
         {
-            // itemImage.fillAmount = 1;
             filledSlices = slices;
-            DOTween.To(
-                (x) => itemImage.fillAmount = x,
-                itemImage.fillAmount,
-                1,
-                0.2f
-            );
+            Tween(1);
+            //DOTween.To(
+            //    (x) => itemImage.fillAmount = x,
+            //    itemImage.fillAmount,
+            //    1,
+            //    0.2f
+            //);
         }
         else
         {
             filledSlices = Mathf.FloorToInt(((localMousePosition.x - xMin) + (distancePerSlice / 2)) / distancePerSlice);
-            // itemImage.fillAmount = Mathf.Clamp01((float)filledSlices / slices);
-            DOTween.To(
+            Tween(Mathf.Clamp01((float)filledSlices / slices));
+            //DOTween.To(
+            //    (x) => itemImage.fillAmount = x,
+            //    itemImage.fillAmount,
+            //    Mathf.Clamp01((float)filledSlices / slices),
+            //    0.2f
+            //);
+        }
+    }
+    public Vector2Int GetFraction()
+    {
+        return new Vector2Int(filledSlices, slices);
+    }
+    private void Tween(float value)
+    {
+        tweener?.Kill();
+        tweener = DOTween.To(
                 (x) => itemImage.fillAmount = x,
                 itemImage.fillAmount,
-                Mathf.Clamp01((float)filledSlices / slices),
+                value,
                 0.2f
             );
-            //filledSlices++;
-        }
     }
     public int GetAnswer()
     {

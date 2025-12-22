@@ -33,8 +33,11 @@ namespace IACGGames.UISystem
             playButton.onClick.RemoveAllListeners();
             howToPlayButton.onClick.RemoveAllListeners();
         }
-       
-       
+        public void PlayButtonPressedWithInt(int difficulty)
+        {
+            GameSDKSystem.Instance.currentLevel = difficulty;
+            OnPlayButtonPressed();
+        }
         public void OnPlayButtonPressed()
         {
             GameSDKSystem.Instance.StartGame();

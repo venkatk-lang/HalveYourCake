@@ -13,14 +13,21 @@ public class Countdown : MonoBehaviour
     //Countdown MM:SS demo
     [SerializeField] CountdownTimerUI cdTimerUI;
     CountdownTimerMMSS cdTimer;
+    [SerializeField] int levelTime = 180;
     void Start()
+    {   
+        //For testing
+        //cd = new CountdownTimer(this);
+        //CountdownUI cdUI = Instantiate(cdUIPrefab, cdParent);
+        //cdUI.Bind(cd);
+        //cd.Start(3);
+        //cd.OnComplete += Cd_OnComplete;
+        
+        //Cd_OnComplete();
+    }
+    public void StartTimer()
     {
-        cd = new CountdownTimer(this);
-        CountdownUI cdUI = Instantiate(cdUIPrefab, cdParent);
-        cdUI.Bind(cd);
-        cd.Start(3);
-        cd.OnComplete += Cd_OnComplete;
-
+        Cd_OnComplete();
     }
 
     private void Cd_OnComplete()
@@ -33,12 +40,13 @@ public class Countdown : MonoBehaviour
         cdTimer = new CountdownTimerMMSS(this);
         cdTimerUI.Bind(cdTimer);
 
-        cdTimer.Start(180f); // 03:00
+        cdTimer.Start(levelTime); // 03:00
         cdTimer.OnFinished += CdTimer_OnFinished;
     }
 
     private void CdTimer_OnFinished()
     {
+        GameManager.Instance.OnLevelComplete();
         Debug.Log("Countdown MM:SS Finished!");
     }
 
