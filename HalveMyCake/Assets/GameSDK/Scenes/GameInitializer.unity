@@ -545,6 +545,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5498285031549170813, guid: 26f0493be72688d41a24c88df4228977, type: 3}
+      propertyPath: levelDataSO
+      value: 
+      objectReference: {fileID: 11400000, guid: 2dc7225ae9f41fb4c84309692cb0fee4, type: 2}
     - target: {fileID: 6327720640535536430, guid: 26f0493be72688d41a24c88df4228977, type: 3}
       propertyPath: gameSceneName
       value: GameScene

@@ -10,6 +10,7 @@ namespace IACGGames.UISystem
         [SerializeField] Button playButton;
         [SerializeField] Button howToPlayButton;
 
+        [SerializeField] BuildingItem[] buildingItems; 
       
         protected override void OnEnable()
         {
@@ -24,8 +25,29 @@ namespace IACGGames.UISystem
                 AudioManager.Instance.PlaySFX(SFXAudioID.Click);
                 OnHowToPlayButtonPressed();
             });
+            InitializeLevelSelection();
         }
 
+        private void InitializeLevelSelection()
+        {
+            int unlockedLevels = SaveDataHandler.Instance.SaveData.unlockedLevels;
+            print(unlockedLevels);
+            for (int i = 0; i < buildingItems.Length; i++)
+            {
+                if (i <= unlockedLevels)
+                {
+                    buildingItems[i].GetComponent<Button>().enabled = true;
+                    if (SaveDataHandler.Instance.SaveData.starsEarned.Count > i)
+                    {
+                        buildingItems[i].SetStars(SaveDataHandler.Instance.SaveData.starsEarned[i]);
+                    }
+                }
+                else
+                {
+                    buildingItems[i].GetComponent<Button>().enabled = false;
+                }
+            }
+        }
 
         protected override void OnDisable()
         {

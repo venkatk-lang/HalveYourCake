@@ -7,8 +7,10 @@ namespace IACGGames
 
         public IGameLifecycle gameLifecycle;
         public int currentLevel = 0;
+        public int correctAnswers = 0;
         public void StartGame()
         {
+            correctAnswers = 0;
             ResumeGame();
             gameLifecycle?.OnGameStarted();
         }
@@ -28,8 +30,9 @@ namespace IACGGames
 
         public void RestartGame()
         {
+            correctAnswers = 0;
             ResumeGame();
-            gameLifecycle?.OnRestart(); 
+            gameLifecycle?.OnRestart();
         }
         public void StartTutorail()
         {
@@ -58,7 +61,7 @@ namespace IACGGames
         //    await APIService.UpdatePlayerScore(playerData.playerId, score);
         //}
 
-     
+
         //public async Task InitializePlayer(string playerId)
         //{
         //    playerData = await APIService.GetPlayerData(playerId);

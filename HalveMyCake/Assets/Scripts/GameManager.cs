@@ -20,6 +20,7 @@ public class GameManager : GameManagerBase<GameManager>
     int problemCount => problems.problem.Count;
     int problemIndex = -1;
     Problem currentProblem = new();
+
     //Problem currentProblem = null;
     private void Start()
     {
@@ -97,7 +98,6 @@ public class GameManager : GameManagerBase<GameManager>
 
     public void Update()
     {
-        print(Time.timeScale);
         if (!gameStarted) return;
         if (mode == QuizMode.butter)
         {
@@ -118,6 +118,7 @@ public class GameManager : GameManagerBase<GameManager>
         {
             if (CheckAnswer())
             {
+                GameSDKSystem.Instance.correctAnswers++;
                 normalScore.Score.Add(10);
                 NextQuiz();
             }
@@ -150,7 +151,7 @@ public class GameManager : GameManagerBase<GameManager>
             flourSlicer.gameObject.SetActive(false);
 
 
-        mode = (QuizMode)(((int)mode + 1) % 3);
+        mode = (QuizMode)(Random.Range(0,3));
         problemIndex = (problemIndex + 1) % problemCount;
         multiplier = Random.Range(1, 4);
         problemUI.SetProblemText(problems.problem[problemIndex].question);

@@ -2499,7 +2499,7 @@ MonoBehaviour:
   cdParent: {fileID: 2078975293}
   timerUI: {fileID: 1376125674}
   cdTimerUI: {fileID: 631223163}
-  levelTime: 120
+  levelTime: 20
 --- !u!114 &224494198
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9701,7 +9701,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1081149784}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7fef50854cc2a1848bdb3c9ee8c2a7dd, type: 3}
   m_Name: 
@@ -13285,6 +13285,16 @@ MonoBehaviour:
   fadeDuration: 0.25
   playButton: {fileID: 1981768194}
   howToPlayButton: {fileID: 1120125643}
+  buildingItems:
+  - {fileID: 1514810497}
+  - {fileID: 1150953268}
+  - {fileID: 121237097}
+  - {fileID: 1582955811}
+  - {fileID: 1199522702}
+  - {fileID: 1900803383}
+  - {fileID: 669821503}
+  - {fileID: 152042802}
+  - {fileID: 1650832795}
 --- !u!1 &1582955809
 GameObject:
   m_ObjectHideFlags: 0
@@ -17129,7 +17139,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2052248254}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7fef50854cc2a1848bdb3c9ee8c2a7dd, type: 3}
   m_Name: 

@@ -1,15 +1,16 @@
 ﻿using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
+using System.Collections.Generic;
 namespace IACGGames
 {
     public class SaveDataHandler : Singleton<SaveDataHandler>
     {
         [SerializeField] private GameConfig gameConfig;
         [SerializeField] private SaveData saveData;
-
+        [SerializeField] private LevelDataSO levelDataSO;
         //private bool newUser;
-
+        public List<LevelData> levelData => levelDataSO.levelData;
         public SaveData SaveData
         {
             get => saveData;
@@ -37,6 +38,7 @@ namespace IACGGames
         private void InitializeDataForFirstTime()
         {
             SaveData = new SaveData(gameConfig);
+            SaveData.starsEarned = new List<int>();
         }
         #endregion
         #region Write Data
