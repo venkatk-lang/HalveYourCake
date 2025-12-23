@@ -18,29 +18,29 @@ MonoBehaviour:
     pointsReward: 100
   - levelNumber: 1
     starThresholds: 020000000300000004000000
-    pointsReward: 100
+    pointsReward: 120
   - levelNumber: 2
     starThresholds: 030000000400000005000000
-    pointsReward: 100
+    pointsReward: 180
   - levelNumber: 3
     starThresholds: 040000000500000006000000
-    pointsReward: 100
+    pointsReward: 270
   - levelNumber: 4
     starThresholds: 050000000600000007000000
-    pointsReward: 100
+    pointsReward: 420
   - levelNumber: 5
     starThresholds: 060000000700000008000000
-    pointsReward: 100
+    pointsReward: 630
   - levelNumber: 6
     starThresholds: 070000000800000009000000
-    pointsReward: 100
+    pointsReward: 910
   - levelNumber: 7
     starThresholds: 08000000090000000a000000
-    pointsReward: 100
+    pointsReward: 1260
   - levelNumber: 8
     starThresholds: 08000000090000000a000000
     pointsReward: 100
   currLevelData:
-    levelNumber: 0
-    starThresholds: 010000000200000003000000
+    levelNumber: 8
+    starThresholds: 08000000090000000a000000
     pointsReward: 100

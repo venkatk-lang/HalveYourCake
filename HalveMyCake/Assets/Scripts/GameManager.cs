@@ -91,6 +91,7 @@ public class GameManager : GameManagerBase<GameManager>
     }
     public void OnLevelComplete()
     {
+        normalScore.Score.Add(GameSDKSystem.Instance.currentLevel * 1000);
         Time.timeScale = 1;
         gameOverPanel.ShowGameOver(normalScore.Score.Score);
     }
@@ -119,7 +120,7 @@ public class GameManager : GameManagerBase<GameManager>
             if (CheckAnswer())
             {
                 GameSDKSystem.Instance.correctAnswers++;
-                normalScore.Score.Add(10);
+                normalScore.Score.Add(SaveDataHandler.Instance.levelData[GameSDKSystem.Instance.currentLevel].pointsReward);
                 NextQuiz();
             }
             else
