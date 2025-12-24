@@ -64,6 +64,10 @@ namespace IACGGames.UISystem
         {
             GameSDKSystem.Instance.StartGame();
         }
+        public void OnTutorialButtonPressed()
+        {
+            GameSDKSystem.Instance.StartTutorail();
+        }
 
         public void OnHowToPlayButtonPressed()
         {

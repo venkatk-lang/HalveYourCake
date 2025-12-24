@@ -36,7 +36,7 @@ namespace IACGGames
         }
         public void StartTutorail()
         {
-            ResumeGame();
+            //ResumeGame();
             gameLifecycle?.OnStartTutorial();
         }
         public void QuitGame()

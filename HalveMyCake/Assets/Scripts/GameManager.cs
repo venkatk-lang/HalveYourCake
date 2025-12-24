@@ -15,6 +15,7 @@ public class GameManager : GameManagerBase<GameManager>
     [SerializeField] private ProblemUI problemUI;
     [SerializeField] private GameOverPanel gameOverPanel;
     [SerializeField] private Countdown countdown;
+    [SerializeField] private TutorialPanel tutorialPanel;
     QuizMode mode = QuizMode.flour;
     bool gameStarted = false;
     int problemCount => problems.problem.Count;
@@ -83,6 +84,8 @@ public class GameManager : GameManagerBase<GameManager>
     public override void OnStartTutorial()
     {
         base.OnStartTutorial();
+        Time.timeScale = 0;
+        StartTutorial();
     }
     public override void OnGameStarted()
     {
@@ -172,6 +175,10 @@ public class GameManager : GameManagerBase<GameManager>
         else if (mode == QuizMode.flour)
             flourSlicer.InitializeSlices(problems.problem[problemIndex].answer.denominator * multiplier);
 
+    }
+    private void StartTutorial()
+    {
+        tutorialPanel.gameObject.SetActive(true);
     }
 }
 public enum QuizMode

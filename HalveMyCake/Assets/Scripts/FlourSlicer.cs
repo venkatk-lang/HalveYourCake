@@ -99,6 +99,7 @@ public class FlourSlicer : MonoBehaviour
                 value,
                 0.2f
             );
+        tweener.SetUpdate(true);
     }
     public int GetAnswer()
     {

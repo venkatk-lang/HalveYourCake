@@ -82,6 +82,12 @@ public class ButterSlicer : MonoBehaviour
     }
     private void Tween(float value)
     {
+        //itemImage.fillAmount = value;
+        //itemImage.SetAllDirty();
+        //itemImage.SetVerticesDirty();
+        //itemImage.SetMaterialDirty();
+        //Canvas.ForceUpdateCanvases();
+        //LayoutRebuilder.ForceRebuildLayoutImmediate(itemImage.rectTransform);
         tweener?.Kill();
         tweener = DOTween.To(
                 (x) => itemImage.fillAmount = x,
@@ -89,6 +95,7 @@ public class ButterSlicer : MonoBehaviour
                 value,
                 0.2f
             );
+        tweener.SetUpdate(true);
     }
     public int GetAnswer()
     {
