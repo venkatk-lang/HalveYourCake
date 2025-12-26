@@ -36,10 +36,10 @@ public class CakeSlicer : MonoBehaviour
         slices = _slices;
         cutter.Cut(slices);
         int specialPointerCondition = slices % 5 == 0 ? 5
-            : 4 % slices == 0 ? 4
-            : 3 % slices == 0 ? 3
-            : 2 % slices == 0 ? 2 : 1;
-        for(int i = 0; i < slices; i++) {
+           : slices % 4 == 0 ? 4
+           : slices % 3 == 0 ? 3
+           : slices % 2 == 0 ? 2 : 1;
+        for (int i = 0; i < slices; i++) {
             if(i % specialPointerCondition == 0)
             {
                 Image inst = Instantiate(specialPointerPrefab, itemImage.transform);

@@ -1,9 +1,10 @@
-using IACGGames;
 using System.Collections.Generic;
+using IACGGames;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
-public class FlourSlicer : MonoBehaviour
+
+public class ButterSlicer : MonoBehaviour
 {
     [SerializeField] private Image itemImage;
     [SerializeField] private Image pointerPrefab;
@@ -13,57 +14,60 @@ public class FlourSlicer : MonoBehaviour
 
     [SerializeField] RectTransform rectTransform;
     List<Image> slicePointers = new();
-    public int GetSlices() { return slices; }
-    [SerializeField] private GameObject bg;
+    [SerializeField] GameObject bgGameObject;
     private void OnEnable()
     {
-        bg.SetActive(true);
+        bgGameObject.SetActive(true);
     }
     private void OnDisable()
     {
-        bg.SetActive(false);
+        bgGameObject.SetActive(false);
     }
+    public int GetSlices() { return slices; }
     public void InitializeSlices(int _slices = -1)
     {
         Helpers.DestroyChildren(transform);
         slicePointers.Clear();
         slices = _slices;
-        int specialPointerCondition = slices % 5 == 0 ? 5
-                   : 4 % slices == 0 ? 4
-                   : 3 % slices == 0 ? 3
-                   : 2 % slices == 0 ? 2 : 1;
 
-        float unitLength = itemImage.rectTransform.rect.height / slices;
-        Vector3 initialPosition = itemImage.rectTransform.position - Vector3.up * itemImage.rectTransform.rect.height / 2 + Vector3.left * pointerOffset;
+        float unitLength = itemImage.rectTransform.rect.width / slices;
+        Vector3 initialPosition = itemImage.rectTransform.position - Vector3.right * itemImage.rectTransform.rect.width / 2 + Vector3.up * pointerOffset;
+        int specialPointerCondition = slices % 5 == 0 ? 5
+           : slices % 4 == 0 ? 4
+           : slices % 3 == 0 ? 3
+           : slices % 2 == 0 ? 2 : 1;
+
+
+
         for (int i = 0; i < slices + 1; i++)
         {
-            if(i % specialPointerCondition == 0)
+            if (i % specialPointerCondition == 0)
             {
                 Image inst = Instantiate(specialPointerPrefab, itemImage.transform);
-                inst.rectTransform.position = initialPosition + Vector3.up * unitLength * i;
+                inst.rectTransform.position = initialPosition + Vector3.right * unitLength * i;
                 slicePointers.Add(inst);
                 continue;
             }
             var instance = Instantiate(pointerPrefab, itemImage.transform);
-            instance.rectTransform.position = initialPosition + Vector3.up * unitLength * i;
+            instance.rectTransform.position = initialPosition + Vector3.right * unitLength * i;
             slicePointers.Add(instance);
         }
 
     }
     int filledSlices;
+    Tweener tweener;
     public void UpdateSliceFill()
     {
         Vector2 localMousePosition;
         RectTransformUtility.ScreenPointToLocalPointInRectangle(
             rectTransform, Input.mousePosition, null, out localMousePosition);
 
-        float yMin = rectTransform.rect.yMin;
-        float yMax = rectTransform.rect.yMax;
-        float distancePerSlice = rectTransform.rect.height / slices;
+        float xMin = rectTransform.rect.xMin;
+        float xMax = rectTransform.rect.xMax;
+        float distancePerSlice = rectTransform.rect.width / slices;
 
-        if (localMousePosition.y < yMin)
+        if (localMousePosition.x < xMin)
         {
-            // itemImage.fillAmount = 0;
             filledSlices = 0;
             Tween(0);
             //DOTween.To(
@@ -73,9 +77,8 @@ public class FlourSlicer : MonoBehaviour
             //    0.2f
             //);
         }
-        else if (localMousePosition.y > yMax)
+        else if (localMousePosition.x > xMax)
         {
-            // itemImage.fillAmount = 1;
             filledSlices = slices;
             Tween(1);
             //DOTween.To(
@@ -87,7 +90,7 @@ public class FlourSlicer : MonoBehaviour
         }
         else
         {
-            filledSlices = Mathf.FloorToInt(((localMousePosition.y - yMin) + (distancePerSlice / 2)) / distancePerSlice);
+            filledSlices = Mathf.FloorToInt(((localMousePosition.x - xMin) + (distancePerSlice / 2)) / distancePerSlice);
             Tween(Mathf.Clamp01((float)filledSlices / slices));
             //DOTween.To(
             //    (x) => itemImage.fillAmount = x,
@@ -101,9 +104,14 @@ public class FlourSlicer : MonoBehaviour
     {
         return new Vector2Int(filledSlices, slices);
     }
-    Tweener tweener;
     private void Tween(float value)
     {
+        //itemImage.fillAmount = value;
+        //itemImage.SetAllDirty();
+        //itemImage.SetVerticesDirty();
+        //itemImage.SetMaterialDirty();
+        //Canvas.ForceUpdateCanvases();
+        //LayoutRebuilder.ForceRebuildLayoutImmediate(itemImage.rectTransform);
         tweener?.Kill();
         tweener = DOTween.To(
                 (x) => itemImage.fillAmount = x,
