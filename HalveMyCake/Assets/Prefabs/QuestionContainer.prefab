@@ -40,7 +40,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 359.7705, y: -138.14966}
+  m_AnchoredPosition: {x: 495.8722, y: -184.36356}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1149451924176971032
@@ -177,7 +177,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 403.0973, y: -138.14966}
+  m_AnchoredPosition: {x: 569.4438, y: -184.36356}
   m_SizeDelta: {x: 106, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4462504360829279038
@@ -350,7 +350,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 229.79018, y: -138.14966}
+  m_AnchoredPosition: {x: 275.1574, y: -184.36356}
   m_SizeDelta: {x: 106, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6717950925235461853
@@ -526,7 +526,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 186.4634, y: -138.14966}
+  m_AnchoredPosition: {x: 201.5858, y: -184.36356}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1937260283571829175
@@ -770,7 +770,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 316.44373, y: -138.14966}
+  m_AnchoredPosition: {x: 422.3006, y: -184.36356}
   m_SizeDelta: {x: 106, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &703150412051701739
@@ -947,7 +947,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 446.42407, y: -138.14966}
+  m_AnchoredPosition: {x: 643.0154, y: -184.36356}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &5429661281202779728
@@ -1327,7 +1327,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 0.9433962, g: 0.7984214, b: 0.5562478, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1433,7 +1433,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 273.11694, y: -138.14966}
+  m_AnchoredPosition: {x: 348.729, y: -184.36356}
   m_SizeDelta: {x: 106, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3225508227322868458
