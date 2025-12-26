@@ -18096,10 +18096,6 @@ PrefabInstance:
       propertyPath: bgGameObject
       value: 
       objectReference: {fileID: 1490589733}
-    - target: {fileID: 6910864847577068878, guid: 41dbdc5b33604ad4b9e6b4fbe0b1a1da, type: 3}
-      propertyPath: specialPointerPrefab
-      value: 
-      objectReference: {fileID: 7223331732227969114, guid: 027b0b0b51ca4c64088147c063220ed2, type: 3}
     - target: {fileID: 8871533919823172888, guid: 41dbdc5b33604ad4b9e6b4fbe0b1a1da, type: 3}
       propertyPath: m_Name
       value: CakeFilledImage
