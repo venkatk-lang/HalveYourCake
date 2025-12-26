@@ -7,67 +7,64 @@ public class ProblemUI : MonoBehaviour
 {
     public TextMeshProUGUI[] numerator = new TextMeshProUGUI[2], denominator = new TextMeshProUGUI[2];
     public Image[] fractionLines = new Image[2];
-    //public TextMeshProUGUI num1Numerator, num1Denominator;
-    //public TextMeshProUGUI num2Numerator, num2Denominator;
-
+    
     public TextMeshProUGUI operationSymbol;
 
     public TextMeshProUGUI[] floatingNums;
     public TextMeshProUGUI answerNumerator, answerDenominator;
+
+    public CakeForQuestions[] cakeForQuestions;
+    public ButterForQuestions[] butterForQuestions;
     public void SetProblemText(Question question)
     {
         Clear();
+        int localNum, localDen;
         for (int i = 0; i < numerator.Length; i++)
         {
-            fractionLines[i].enabled = false;
+            numerator[i].gameObject.SetActive(false);
+            denominator[i].gameObject.SetActive(false);
+            fractionLines[i].gameObject.SetActive(false);
+            floatingNums[i].gameObject.SetActive(false);
+            cakeForQuestions[i].gameObject.SetActive(false);
+            butterForQuestions[i].gameObject.SetActive(false);
             switch (question.valueType[i])
             {
                 case ProblemType.Fractional:
                     // Set fractional problem text
+                    numerator[i].gameObject.SetActive(true);
+                    denominator[i].gameObject.SetActive(true);
                     numerator[i].text += NullAsEmpty(question.numerator[i]);
                     denominator[i].text += NullAsEmpty(question.denominator[i]);
-                    fractionLines[i].enabled = true;
+                    fractionLines[i].gameObject.SetActive(true);
                     break;
                 case ProblemType.FloatingPoint:
                     // Set floating point problem text
+                    floatingNums[i].gameObject.SetActive(true);
                     floatingNums[i].text = NullAsEmpty(question.numerator[i]) + "." + NullAsEmpty(question.denominator[i]);
                     break;
                 case ProblemType.Percentage:
                     // Set percentage problem text
+                    floatingNums[i].gameObject.SetActive(true);
                     floatingNums[i].text = NullAsEmpty(question.numerator[i]) + "%";
                     break;
                 case ProblemType.Visual_Bar:
                     // Set visual bar problem text
-                    int localNum = int.Parse(NullAsEmpty(question.numerator[i]));
-                    for (int j = 0; i < localNum; j++) 
-                    {
-                        // Instantiate bar segments
-                        floatingNums[i].text += "+";
-                    }
-                    int localDen = int.Parse(NullAsEmpty(question.denominator[i]));
-                    for (int j = 0; i < localDen; j++)
-                    {
-                        // Instantiate bar segments
-                        floatingNums[i].text += "-";
-                    }
+                    butterForQuestions[i].gameObject.SetActive(true);
+                    localNum = int.Parse(NullAsEmpty(question.numerator[i]));
+                    localDen = int.Parse(NullAsEmpty(question.denominator[i]));
+                    butterForQuestions[i].SetSlices(localDen, localNum);
                     break;
                 case ProblemType.Visual_Box:
-                    // Set visual box problem text
+                    butterForQuestions[i].gameObject.SetActive(true);
                     localNum = int.Parse(NullAsEmpty(question.numerator[i]));
-                    for (int j = 0; i < localNum; j++)
-                    {
-                        // Instantiate bar segments
-                        floatingNums[i].text += "+";
-                    }
                     localDen = int.Parse(NullAsEmpty(question.denominator[i]));
-                    for (int j = 0; i < localDen; j++)
-                    {
-                        // Instantiate bar segments
-                        floatingNums[i].text += "-";
-                    }
+                    butterForQuestions[i].SetSlices(localDen, localNum);
                     break;
                 case ProblemType.Visual_Circle:
-                    // Set visual circle problem text
+                    cakeForQuestions[i].gameObject.SetActive(true);
+                    localNum = int.Parse(NullAsEmpty(question.numerator[i]));
+                    localDen = int.Parse(NullAsEmpty(question.denominator[i]));
+                    cakeForQuestions[i].SetSlices(localDen, localNum);
                     break;
             }
         }

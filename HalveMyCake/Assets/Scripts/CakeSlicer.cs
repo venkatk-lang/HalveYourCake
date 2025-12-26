@@ -9,6 +9,7 @@ public class CakeSlicer : MonoBehaviour
 {
     [SerializeField] Image itemImage;
     [SerializeField] Image pointerPrefab;
+    [SerializeField] Image specialPointerPrefab;
 
     [SerializeField] float pointerOffset;
     [SerializeField] private int slices = -1;
@@ -34,7 +35,18 @@ public class CakeSlicer : MonoBehaviour
         slicePointers.Clear();
         slices = _slices;
         cutter.Cut(slices);
+        int specialPointerCondition = slices % 5 == 0 ? 5
+            : 4 % slices == 0 ? 4
+            : 3 % slices == 0 ? 3
+            : 2 % slices == 0 ? 2 : 1;
         for(int i = 0; i < slices; i++) {
+            if(i % specialPointerCondition == 0)
+            {
+                Image inst = Instantiate(specialPointerPrefab, itemImage.transform);
+                inst.transform.position = itemImage.transform.position + (Vector3)cutter.GetCut(i) * pointerOffset;
+                slicePointers.Add(inst);
+                continue;
+            }
             Image ins = Instantiate(pointerPrefab, itemImage.transform);
             ins.transform.position = itemImage.transform.position + (Vector3)cutter.GetCut(i) * pointerOffset;
             slicePointers.Add(ins);

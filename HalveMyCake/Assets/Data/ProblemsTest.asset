@@ -28,20 +28,20 @@ MonoBehaviour:
       denominator: 2
   - difficulty: 0
     question:
-      valueType: 0000000000000000
+      valueType: 0500000000000000
       numerator:
-      - 1
+      - 5
       - 1
       denominator:
-      - 2
-      - 3
+      - 10
+      - 5
       OperationType: 1
     answer:
-      numerator: 5
-      denominator: 6
+      numerator: 7
+      denominator: 10
   - difficulty: 0
     question:
-      valueType: 0000000000000000
+      valueType: 0400000000000000
       numerator:
       - 2
       - 1
@@ -117,6 +117,19 @@ MonoBehaviour:
     answer:
       numerator: 3
       denominator: 4
+  - difficulty: 0
+    question:
+      valueType: 0000000000000000
+      numerator:
+      - 2
+      - 2
+      denominator:
+      - 3
+      - 3
+      OperationType: 2
+    answer:
+      numerator: 0
+      denominator: 10
   - difficulty: 0
     question:
       valueType: 0000000000000000

@@ -16,8 +16,10 @@ public class GameManager : GameManagerBase<GameManager>
     [SerializeField] private GameOverPanel gameOverPanel;
     [SerializeField] private Countdown countdown;
     [SerializeField] private TutorialPanel tutorialPanel;
+    [SerializeField] private CorrectOrWrong correctOrWrong;
     QuizMode mode = QuizMode.flour;
     bool gameStarted = false;
+    GameState gameState = GameState.ended_or_started;
     int problemCount => problems.problem.Count;
     int problemIndex = -1;
     Problem currentProblem = new();
@@ -32,6 +34,7 @@ public class GameManager : GameManagerBase<GameManager>
     private int difficultyLevel => GameSDKSystem.Instance.currentLevel;
     public void StartGame()
     {
+        gameState = GameState.running;
         problemDict.Clear();
         foreach (var p in problems.problem)
         {
@@ -73,11 +76,13 @@ public class GameManager : GameManagerBase<GameManager>
     public override void OnPause()
     {
         base.OnPause();
+        gameState = GameState.paused;
         Time.timeScale = 0;
     }
     public override void OnResume()
     {
         base.OnResume();
+        gameState = GameState.running;
         Time.timeScale = 1;
 
     }
@@ -94,14 +99,31 @@ public class GameManager : GameManagerBase<GameManager>
     }
     public void OnLevelComplete()
     {
+        gameState = GameState.time_up;
         normalScore.Score.Add(GameSDKSystem.Instance.currentLevel * 1000);
         Time.timeScale = 1;
+        //gameOverPanel.ShowGameOver(normalScore.Score.Score);
+        StartCoroutine(WaitForLastProblem());
+    }
+    IEnumerator WaitForLastProblem()
+    {
+        yield return new WaitUntil(() => gameState == GameState.game_over);
+        gameState = GameState.ended_or_started;
         gameOverPanel.ShowGameOver(normalScore.Score.Score);
     }
+    readonly int maxAttempts = 2;
     int attemptsRemaining = 2;
 
     public void Update()
     {
+        if (gameState == GameState.time_up)
+        {
+            OnLevelComplete();
+            gameState = GameState.game_over;
+            return;
+        }
+        if (gameState != GameState.running)
+            return;
         if (!gameStarted) return;
         if (mode == QuizMode.butter)
         {
@@ -122,13 +144,19 @@ public class GameManager : GameManagerBase<GameManager>
         {
             if (CheckAnswer())
             {
+                correctOrWrong.CorrectAnswer();
                 GameSDKSystem.Instance.correctAnswers++;
-                normalScore.Score.Add(SaveDataHandler.Instance.levelData[GameSDKSystem.Instance.currentLevel].pointsReward);
+                normalScore.Score.Add(SaveDataHandler.Instance.levelData[GameSDKSystem.Instance.currentLevel].pointsReward * (int)((float)attemptsRemaining/maxAttempts));
                 NextQuiz();
             }
             else
             {
-
+                attemptsRemaining--;
+                if (attemptsRemaining == 0)
+                {
+                    correctOrWrong.WrongAnswer();
+                    NextQuiz();
+                }
             }
 
         }
@@ -147,6 +175,8 @@ public class GameManager : GameManagerBase<GameManager>
     }
     public void NextQuiz()
     {
+        attemptsRemaining = maxAttempts;
+
         if (mode == QuizMode.butter)
             butterSlicer.gameObject.SetActive(false);
         else if (mode == QuizMode.cake)
@@ -155,9 +185,9 @@ public class GameManager : GameManagerBase<GameManager>
             flourSlicer.gameObject.SetActive(false);
 
 
-        mode = (QuizMode)(Random.Range(0,3));
+        mode = (QuizMode)(Random.Range(0, 3));
         problemIndex = (problemIndex + 1) % problemCount;
-        multiplier = Random.Range(1, 4);
+        //multiplier = Random.Range(1, 4);
         problemUI.SetProblemText(problems.problem[problemIndex].question);
 
         if (mode == QuizMode.butter)
@@ -186,4 +216,12 @@ public enum QuizMode
     cake = 0,
     flour = 1,
     butter = 2
+}
+public enum GameState
+{
+    ended_or_started,
+    running,
+    paused,
+    time_up,
+    game_over
 }

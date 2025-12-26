@@ -8,7 +8,7 @@ public class ButterSlicer : MonoBehaviour
 {
     [SerializeField] private Image itemImage;
     [SerializeField] private Image pointerPrefab;
-
+    [SerializeField] private Image specialPointerPrefab;
     [SerializeField] float pointerOffset;
     [SerializeField] int slices;
 
@@ -23,10 +23,25 @@ public class ButterSlicer : MonoBehaviour
 
         float unitLength = itemImage.rectTransform.rect.width / slices;
         Vector3 initialPosition = itemImage.rectTransform.position - Vector3.right * itemImage.rectTransform.rect.width / 2 + Vector3.up * pointerOffset;
+        int specialPointerCondition = slices % 5 == 0 ? 5
+           : 4 % slices == 0 ? 4
+           : 3 % slices == 0 ? 3
+           : 2 % slices == 0 ? 2 : 1;
+
+
+
         for (int i = 0; i < slices + 1; i++)
         {
+            if (i % specialPointerCondition == 0)
+            {
+                Image inst = Instantiate(specialPointerPrefab, itemImage.transform);
+                inst.rectTransform.position = initialPosition + Vector3.right * unitLength * i;
+                slicePointers.Add(inst);
+                continue;
+            }
             var instance = Instantiate(pointerPrefab, itemImage.transform);
             instance.rectTransform.position = initialPosition + Vector3.right * unitLength * i;
+            slicePointers.Add(instance);
         }
 
     }

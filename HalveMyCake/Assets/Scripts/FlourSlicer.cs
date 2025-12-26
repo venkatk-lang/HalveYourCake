@@ -7,7 +7,7 @@ public class FlourSlicer : MonoBehaviour
 {
     [SerializeField] private Image itemImage;
     [SerializeField] private Image pointerPrefab;
-
+    [SerializeField] private Image specialPointerPrefab;
     [SerializeField] float pointerOffset;
     [SerializeField] int slices;
 
@@ -28,13 +28,25 @@ public class FlourSlicer : MonoBehaviour
         Helpers.DestroyChildren(transform);
         slicePointers.Clear();
         slices = _slices;
+        int specialPointerCondition = slices % 5 == 0 ? 5
+                   : 4 % slices == 0 ? 4
+                   : 3 % slices == 0 ? 3
+                   : 2 % slices == 0 ? 2 : 1;
 
         float unitLength = itemImage.rectTransform.rect.height / slices;
         Vector3 initialPosition = itemImage.rectTransform.position - Vector3.up * itemImage.rectTransform.rect.height / 2 + Vector3.left * pointerOffset;
         for (int i = 0; i < slices + 1; i++)
         {
+            if(i % specialPointerCondition == 0)
+            {
+                Image inst = Instantiate(specialPointerPrefab, itemImage.transform);
+                inst.rectTransform.position = initialPosition + Vector3.up * unitLength * i;
+                slicePointers.Add(inst);
+                continue;
+            }
             var instance = Instantiate(pointerPrefab, itemImage.transform);
             instance.rectTransform.position = initialPosition + Vector3.up * unitLength * i;
+            slicePointers.Add(instance);
         }
 
     }
