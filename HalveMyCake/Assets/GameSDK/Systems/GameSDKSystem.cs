@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 namespace IACGGames
@@ -26,8 +27,15 @@ namespace IACGGames
         public void ResumeGame()
         {
             if (!IsPaused) return;
+            StartCoroutine(WaitForResume());
+            //IsPaused = false;
+            //gameLifecycle?.OnResume();
+        }
+        IEnumerator WaitForResume()
+        {
+            yield return new WaitForSecondsRealtime(0.01f);
             IsPaused = false;
-            gameLifecycle?.OnResume();
+            gameLifecycle.OnResume();
         }
 
         public void RestartGame()

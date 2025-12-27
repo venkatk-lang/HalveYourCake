@@ -8,11 +8,14 @@ using System.Collections;
 public class GameManager : GameManagerBase<GameManager>
 {
     [SerializeField] private NormalScoreWrapper normalScore;
+
     [SerializeField] private CakeSlicer cakeSlicer;
     [SerializeField] private FlourSlicer flourSlicer;
     [SerializeField] private ButterSlicer butterSlicer;
+    
     [SerializeField] private ProblemsSO problems;
     [SerializeField] private ProblemUI problemUI;
+    
     [SerializeField] private GameOverPanel gameOverPanel;
     [SerializeField] private Countdown countdown;
     [SerializeField] private TutorialPanel tutorialPanel;
@@ -116,13 +119,7 @@ public class GameManager : GameManagerBase<GameManager>
 
     public void Update()
     {
-        if (gameState == GameState.time_up)
-        {
-            OnLevelComplete();
-            gameState = GameState.game_over;
-            return;
-        }
-        if (gameState != GameState.running)
+        if (gameState != GameState.running && gameState != GameState.time_up)
             return;
         if (!gameStarted) return;
         if (mode == QuizMode.butter)
@@ -158,7 +155,12 @@ public class GameManager : GameManagerBase<GameManager>
                     NextQuiz();
                 }
             }
-
+            if (gameState == GameState.time_up)
+            {
+                OnLevelComplete();
+                gameState = GameState.game_over;
+                return;
+            }
         }
     }
     int multiplier = 1;
