@@ -18,11 +18,42 @@ public class TutorialPanel : MonoBehaviour
     bool inbetweenPanel2Completed = false;
     [SerializeField] GameObject finalPanelGO;
     bool finalPanelCompleted = false;
+
+    Vector3 cakeInitPos, flourInitPos, butterInitPos;
+    Coroutine tutorialRoutine;
+    private void Awake()
+    {
+        cakeInitPos = cakeRect.transform.localPosition;
+        flourInitPos = flourRect.transform.localPosition;
+        butterInitPos = butterRect.transform.localPosition;
+    }
     private void OnEnable()
     {
+        Debug.Log("Tut enable");
+        ReInitializePositions();
         Time.timeScale = 0f;
-        StartCoroutine(TutorialCR());
+        inbetweenPanel1Completed = false;
+        inbetweenPanel2Completed = false;
+        finalPanelCompleted = false;
+        slide1Completed = false;
+        slide2Completed = false;
+        slide3Completed = false;
+        slide1Started = false;
+        slide2Started = false;
+        slide3Started = false;
+
+        finalPanelGO.SetActive(false);
+        if(tutorialRoutine != null) StopCoroutine(tutorialRoutine);
+        tutorialRoutine = StartCoroutine(TutorialCR());
     }
+
+    private void ReInitializePositions()
+    {
+        cakeRect.transform.localPosition = cakeInitPos;
+        flourRect.transform.localPosition = flourInitPos;
+        butterRect.transform.localPosition = butterInitPos;
+    }
+
     IEnumerator TutorialCR()
     {
         while (true)
@@ -68,10 +99,10 @@ public class TutorialPanel : MonoBehaviour
                 //yield return null;
                 continue;
             }
-            if(!finalPanelCompleted)
+            if (!finalPanelCompleted)
             {
                 finalPanelGO.SetActive(true);
-                if(Input.GetMouseButtonDown(0))
+                if (Input.GetMouseButtonDown(0))
                 {
                     finalPanelGO.SetActive(false);
                     finalPanelCompleted = true;
@@ -80,8 +111,36 @@ public class TutorialPanel : MonoBehaviour
             }
             break;
         }
-        gameObject.SetActive(false);
         yield return new WaitForSecondsRealtime(1.5f);
+        gameObject.SetActive(false);
+        GameSDKSystem.Instance.ResumeGame();
+        yield return null;
+    }
+    public void OnClickedSkipTutorial()
+    {
+        slide1Completed = true;
+        slide2Completed = true;
+        slide3Completed = true;
+        inbetweenPanel1Completed = true;
+        inbetweenPanel2Completed = true;
+        slide1.SetActive(false);
+        slide2.SetActive(false);
+        slide3.SetActive(false);
+        inbetweenPanel1.SetActive(false);
+        inbetweenPanel2.SetActive(false);
+
+        finalPanelGO.SetActive(true);
+        finalPanelGO.transform.position = new Vector3(Screen.width / 2, Screen.height / 2, 0);
+        StartCoroutine(AwaitSkipTutorial());
+       // StopCoroutine(TutorialCR());
+        if (tutorialRoutine != null) StopCoroutine(tutorialRoutine);
+    }
+    public IEnumerator AwaitSkipTutorial()
+    {
+        DOTween.KillAll();
+        ReInitializePositions();
+        yield return new WaitForSecondsRealtime(1.5f);
+        gameObject.SetActive(false);
         GameSDKSystem.Instance.ResumeGame();
         yield return null;
     }
@@ -125,7 +184,7 @@ public class TutorialPanel : MonoBehaviour
                 slide1.SetActive(false);
             }
         }
-        
+
     }
     #endregion
     #region Slide 2
