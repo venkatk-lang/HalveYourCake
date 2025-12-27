@@ -16,6 +16,8 @@ public class TutorialPanel : MonoBehaviour
     [SerializeField] GameObject inbetweenPanel1, inbetweenPanel2;
     bool inbetweenPanel1Completed = false;
     bool inbetweenPanel2Completed = false;
+    [SerializeField] GameObject finalPanelGO;
+    bool finalPanelCompleted = false;
     private void OnEnable()
     {
         Time.timeScale = 0f;
@@ -66,9 +68,20 @@ public class TutorialPanel : MonoBehaviour
                 //yield return null;
                 continue;
             }
+            if(!finalPanelCompleted)
+            {
+                finalPanelGO.SetActive(true);
+                if(Input.GetMouseButtonDown(0))
+                {
+                    finalPanelGO.SetActive(false);
+                    finalPanelCompleted = true;
+                }
+                continue;
+            }
             break;
         }
         gameObject.SetActive(false);
+        yield return new WaitForSecondsRealtime(1.5f);
         GameSDKSystem.Instance.ResumeGame();
         yield return null;
     }

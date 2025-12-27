@@ -1,3 +1,5 @@
+using UnityEngine;
+
 namespace IACGGames
 {
     public class GameSDKSystem : Singleton<GameSDKSystem>

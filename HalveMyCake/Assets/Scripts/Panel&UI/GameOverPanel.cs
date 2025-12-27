@@ -23,8 +23,10 @@ public class GameOverPanel : MonoBehaviour
         if (SaveDataHandler.Instance.levelData.Count > SaveDataHandler.Instance.SaveData.unlockedLevels)
         {
             levelData = SaveDataHandler.Instance.levelData[GameSDKSystem.Instance.currentLevel];
-
-            if (levelData.starThresholds[0] <= points) SaveDataHandler.Instance.SaveData.unlockedLevels += 1;
+            if (GameSDKSystem.Instance.currentLevel == SaveDataHandler.Instance.SaveData.unlockedLevels)
+            {
+                if (levelData.starThresholds[0] <= points) SaveDataHandler.Instance.SaveData.unlockedLevels += 1;
+            }
             int i = 0;
 
             while (levelData.starThresholds[i] <= points)
