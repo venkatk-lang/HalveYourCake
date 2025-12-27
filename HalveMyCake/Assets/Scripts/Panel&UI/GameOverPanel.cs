@@ -3,6 +3,7 @@ using IACGGames;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 public class GameOverPanel : MonoBehaviour
 {
@@ -22,13 +23,10 @@ public class GameOverPanel : MonoBehaviour
         if (SaveDataHandler.Instance.levelData.Count > SaveDataHandler.Instance.SaveData.unlockedLevels)
         {
             levelData = SaveDataHandler.Instance.levelData[GameSDKSystem.Instance.currentLevel];
-            //if (GameSDKSystem.Instance.currentLevel == SaveDataHandler.Instance.SaveData.unlockedLevels)
-            //{
 
-            //}
             if (levelData.starThresholds[0] <= points) SaveDataHandler.Instance.SaveData.unlockedLevels += 1;
             int i = 0;
-            //int localStarsEarned = SaveDataHandler.Instance.SaveData.starsEarned[GameSDKSystem.Instance.currentLevel];
+
             while (levelData.starThresholds[i] <= points)
             {
                 i++;
@@ -37,7 +35,7 @@ public class GameOverPanel : MonoBehaviour
             }
             if (SaveDataHandler.Instance.SaveData.starsEarned == null)
             {
-                SaveDataHandler.Instance.SaveData.starsEarned = new System.Collections.Generic.List<int>();
+                SaveDataHandler.Instance.SaveData.starsEarned = new List<int>();
             }
             if (SaveDataHandler.Instance.SaveData.starsEarned.Count <= GameSDKSystem.Instance.currentLevel)
             {
